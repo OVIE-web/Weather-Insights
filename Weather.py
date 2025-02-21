@@ -21,7 +21,7 @@ def get_weather(city_name, api_key):
 # Function to show weather notification
 def show_weather():
   city_name = city_entry.get()
-  api_key = "eb9fb5b5cd49a8c5ac2f493f74b60e07"  # Replace with your OpenWeatherMap API key
+  api_key = "eb9fb5b5cd49a8c5ac2f493f74b60e07"  # OpenWeatherMap API key
 
   if not city_name:
     messagebox.showwarning("Warning", "Please enter a city name.")
