@@ -22,21 +22,31 @@ def get_weather(city_name, api_key):
         messagebox.showerror("Error", f"Failed to fetch weather data: {e}")
         return None, str(e)
 
-def fetch_and_show_weather(city_name, api_key):
-    weather_data, error = get_weather(city_name, api_key)
-    if error:
-        messagebox.showerror("Error", error)
-        return
-    if weather_data:
-        main = weather_data["main"]
-        temp = main["temp"]
-        humidity = main["humidity"]
-        pressure = main["pressure"]
-        weather_desc = weather_data["weather"][0]["description"]
-        weather_info = f"City: {city_name}\nTemperature: {temp}°C\nPressure: {pressure} hPa\nHumidity: {humidity}%\nDescription: {weather_desc}"
-        messagebox.showinfo("Weather Information", weather_info)
-    else:
-        messagebox.showerror("Error", "City Not Found or API error")
+# Function to show weather notification
+def show_weather():
+  city_name = city_entry.get()
+  api_key = "eb9fb5b5cd49a8c5ac2f493f74b60e07"  # Replace with your OpenWeatherMap API key
+
+  if not city_name:
+    messagebox.showwarning("Warning", "Please enter a city name.")
+    return
+
+  weather_data, error = get_weather(city_name, api_key)
+
+  if error:
+    messagebox.showerror("Error", error)
+    return
+
+  if weather_data:
+    main = weather_data["main"]
+    temp = main["temp"]
+    humidity = main["humidity"]
+    pressure = main["pressure"]
+    weather_desc = weather_data["weather"][0]["description"]
+    weather_info = f"City: {city_name}\nTemperature: {temp}°C\nPressure: {pressure} hPa\nHumidity: {humidity}%\nDescription: {weather_desc}"
+    messagebox.showinfo("Weather Information", weather_info)
+  else:
+      messagebox.showerror("Error", "City Not Found or API error")
 
 # Function to show weather notification
 def show_weather():
